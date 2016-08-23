@@ -6,6 +6,8 @@
 
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author walbonis1
@@ -48,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setText("manejo de vectores");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 270, 40));
 
@@ -57,6 +59,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("longitud ");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        txtLongitud.setForeground(new java.awt.Color(0, 204, 204));
+        txtLongitud.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLongitudKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 80, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 180, 90));
@@ -64,31 +73,59 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("opciones\n"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cmdLlenarManual.setBackground(new java.awt.Color(0, 204, 204));
+        cmdLlenarManual.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
+        cmdLlenarManual.setForeground(new java.awt.Color(102, 102, 102));
         cmdLlenarManual.setText("Llenar Manual");
-        jPanel3.add(cmdLlenarManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        cmdLlenarManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenarManualActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdLlenarManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, -1));
 
+        cmdLLenarAutomatico.setBackground(new java.awt.Color(0, 204, 204));
+        cmdLLenarAutomatico.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
+        cmdLLenarAutomatico.setForeground(new java.awt.Color(102, 102, 102));
         cmdLLenarAutomatico.setText("Llenar Automatico");
-        jPanel3.add(cmdLLenarAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+        jPanel3.add(cmdLLenarAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 130, -1));
 
+        cmdMostrar.setBackground(new java.awt.Color(0, 204, 204));
+        cmdMostrar.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
+        cmdMostrar.setForeground(new java.awt.Color(102, 102, 102));
         cmdMostrar.setText("Mostrar");
-        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, -1));
 
+        cmdBorrar.setBackground(new java.awt.Color(0, 204, 204));
+        cmdBorrar.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
+        cmdBorrar.setForeground(new java.awt.Color(255, 0, 0));
         cmdBorrar.setText("Borrar");
-        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 130, -1));
 
+        cmdCrear.setBackground(new java.awt.Color(0, 204, 204));
+        cmdCrear.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
+        cmdCrear.setForeground(new java.awt.Color(102, 102, 102));
         cmdCrear.setText("crear");
-        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 20, -1, -1));
+        cmdCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCrearActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 130, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 120, 200));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 150, 180));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("resultado"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtResultado.setEditable(false);
+        txtResultado.setBackground(new java.awt.Color(5, 246, 166));
         txtResultado.setColumns(20);
+        txtResultado.setForeground(new java.awt.Color(0, 153, 153));
         txtResultado.setRows(5);
         jScrollPane1.setViewportView(txtResultado);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 200, 120));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 260, 180));
 
@@ -96,7 +133,9 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,6 +144,36 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdLlenarManualActionPerformed
+
+    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
+     if(txtLongitud.getText().trim().isEmpty()){
+         JOptionPane.showMessageDialog(this, "digite la longitud ","Error ",JOptionPane.ERROR_MESSAGE);
+         txtLongitud.requestFocusInWindow();
+     }else if( txtLongitud.getText().trim().equals("0")){
+          JOptionPane.showMessageDialog(this, " la longitud no puede ser cero  ","Error ",JOptionPane.ERROR_MESSAGE);
+         txtLongitud.requestFocusInWindow();
+         txtLongitud.selectAll();
+     }
+         
+     
+    }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
+     char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume(); 
+               
+              
+          }
+    }//GEN-LAST:event_txtLongitudKeyTyped
 
     /**
      * @param args the command line arguments
