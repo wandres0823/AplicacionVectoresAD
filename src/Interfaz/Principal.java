@@ -17,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    double v[];
     public Principal() {
         initComponents();
     }
@@ -44,6 +45,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
+        cmdSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +63,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         txtLongitud.setForeground(new java.awt.Color(0, 204, 204));
+        txtLongitud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLongitudActionPerformed(evt);
+            }
+        });
         txtLongitud.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtLongitudKeyTyped(evt);
@@ -88,18 +95,33 @@ public class Principal extends javax.swing.JFrame {
         cmdLLenarAutomatico.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
         cmdLLenarAutomatico.setForeground(new java.awt.Color(102, 102, 102));
         cmdLLenarAutomatico.setText("Llenar Automatico");
+        cmdLLenarAutomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLLenarAutomaticoActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLLenarAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 130, -1));
 
         cmdMostrar.setBackground(new java.awt.Color(0, 204, 204));
         cmdMostrar.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
         cmdMostrar.setForeground(new java.awt.Color(102, 102, 102));
         cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, -1));
 
         cmdBorrar.setBackground(new java.awt.Color(0, 204, 204));
         cmdBorrar.setFont(new java.awt.Font("Comic Sans MS", 2, 11)); // NOI18N
         cmdBorrar.setForeground(new java.awt.Color(255, 0, 0));
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 130, -1));
 
         cmdCrear.setBackground(new java.awt.Color(0, 204, 204));
@@ -129,6 +151,15 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 260, 180));
 
+        cmdSalir.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
+        cmdSalir.setText("salr");
+        cmdSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 360, 70, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,17 +177,29 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
-        // TODO add your handling code here:
+      double n;
+        for (int i = 0; i < v.length; i++) {
+            n=Double.parseDouble(JOptionPane.showInputDialog(this,"digite el elemento")+i);
+            v[i]=n;
+            
+        }
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-     if(txtLongitud.getText().trim().isEmpty()){
-         JOptionPane.showMessageDialog(this, "digite la longitud ","Error ",JOptionPane.ERROR_MESSAGE);
-         txtLongitud.requestFocusInWindow();
-     }else if( txtLongitud.getText().trim().equals("0")){
-          JOptionPane.showMessageDialog(this, " la longitud no puede ser cero  ","Error ",JOptionPane.ERROR_MESSAGE);
-         txtLongitud.requestFocusInWindow();
-         txtLongitud.selectAll();
+        int longitud;
+        if (txtLongitud.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite la longitud", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLongitud.requestFocusInWindow();
+        } else if (Integer.parseInt(txtLongitud.getText().trim())==0) {
+            JOptionPane.showMessageDialog(this, "La longitud no puede ser cero", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLongitud.requestFocusInWindow();
+            txtLongitud.selectAll();
+            
+        }else{
+        longitud =Integer.parseInt(txtLongitud.getText());
+        v = new double [longitud];
+        JOptionPane.showMessageDialog(this, "vector creado exitosamen");
+        
      }
          
      
@@ -174,6 +217,39 @@ public class Principal extends javax.swing.JFrame {
               
           }
     }//GEN-LAST:event_txtLongitudKeyTyped
+
+    private void txtLongitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLongitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLongitudActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+      
+        for (int i = 0; i < v.length; i++) {
+           txtResultado.append(v[i]+"\n");
+           
+        }
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     txtLongitud.setText("");
+     txtResultado.setText("");
+       v =null;      
+     txtLongitud.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdLLenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLLenarAutomaticoActionPerformed
+      double n;
+        for (int i = 0; i < v.length; i++) {
+           n= (int)(Math.random()*50 + 1);
+            v[i]=n;
+            
+        }
+        JOptionPane.showMessageDialog(this, "vector llenado correctamente");
+    }//GEN-LAST:event_cmdLLenarAutomaticoActionPerformed
+
+    private void cmdSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_cmdSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +292,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton cmdLLenarAutomatico;
     private javax.swing.JButton cmdLlenarManual;
     private javax.swing.JButton cmdMostrar;
+    private javax.swing.JButton cmdSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
