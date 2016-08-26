@@ -60,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 204));
         jLabel1.setText("manejo de vectores");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 270, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 270, 40));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("datos iniciales\n"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -277,10 +277,21 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
         double n;
+        int sw;
         for (int i = 0; i < v.length; i++) {
+            do{
+                sw=1;
+            try{
             n=Double.parseDouble(JOptionPane.showInputDialog(this,"digite el elemento")+i);
             v[i]=n;
-            
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(this,"digite un numero valido OK","ERROR",JOptionPane.ERROR_MESSAGE);
+                sw=0;
+            }catch(NullPointerException e){
+                JOptionPane.showMessageDialog(this,"No puede salir OK");
+                sw=0;
+            }
+            }while(sw==0);
         }
         cmdCrear.setEnabled(false);
         cmdLLenarAutomatico.setEnabled(false);
