@@ -20,6 +20,12 @@ public class Principal extends javax.swing.JFrame {
     double v[];
     public Principal() {
         initComponents();
+        cmdCrear.setEnabled(true);
+        cmdLLenarAutomatico.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        cmdSalir.setEnabled(true);
     }
 
     /**
@@ -152,7 +158,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 260, 180));
 
         cmdSalir.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 12)); // NOI18N
-        cmdSalir.setText("salr");
+        cmdSalir.setText("Salir");
         cmdSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdSalirActionPerformed(evt);
@@ -166,44 +172,16 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(573, 481));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
-      double n;
-        for (int i = 0; i < v.length; i++) {
-            n=Double.parseDouble(JOptionPane.showInputDialog(this,"digite el elemento")+i);
-            v[i]=n;
-            
-        }
-    }//GEN-LAST:event_cmdLlenarManualActionPerformed
-
-    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-        int longitud;
-        if (txtLongitud.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Digite la longitud", "Error", JOptionPane.ERROR_MESSAGE);
-            txtLongitud.requestFocusInWindow();
-        } else if (Integer.parseInt(txtLongitud.getText().trim())==0) {
-            JOptionPane.showMessageDialog(this, "La longitud no puede ser cero", "Error", JOptionPane.ERROR_MESSAGE);
-            txtLongitud.requestFocusInWindow();
-            txtLongitud.selectAll();
-            
-        }else{
-        longitud =Integer.parseInt(txtLongitud.getText());
-        v = new double [longitud];
-        JOptionPane.showMessageDialog(this, "vector creado exitosamen");
-        
-     }
-         
-     
-    }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
      char c=evt.getKeyChar(); 
@@ -222,34 +200,95 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLongitudActionPerformed
 
-    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
-      
-        for (int i = 0; i < v.length; i++) {
-           txtResultado.append(v[i]+"\n");
-           
-        }
-    }//GEN-LAST:event_cmdMostrarActionPerformed
-
-    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
-     txtLongitud.setText("");
-     txtResultado.setText("");
-       v =null;      
-     txtLongitud.requestFocusInWindow();
-    }//GEN-LAST:event_cmdBorrarActionPerformed
-
-    private void cmdLLenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLLenarAutomaticoActionPerformed
-      double n;
-        for (int i = 0; i < v.length; i++) {
-           n= (int)(Math.random()*50 + 1);
-            v[i]=n;
-            
-        }
-        JOptionPane.showMessageDialog(this, "vector llenado correctamente");
-    }//GEN-LAST:event_cmdLLenarAutomaticoActionPerformed
-
     private void cmdSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_cmdSalirActionPerformed
+
+    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
+        int longitud;
+        if (txtLongitud.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite la longitud", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLongitud.requestFocusInWindow();
+        } else if (Integer.parseInt(txtLongitud.getText().trim())==0) {
+            JOptionPane.showMessageDialog(this, "La longitud no puede ser cero", "Error", JOptionPane.ERROR_MESSAGE);
+            txtLongitud.requestFocusInWindow();
+            txtLongitud.selectAll();
+
+        }else{
+            longitud =Integer.parseInt(txtLongitud.getText());
+            v = new double [longitud];
+            JOptionPane.showMessageDialog(this, "vector creado exitosamen");
+            cmdCrear.setEnabled(false);
+        cmdLLenarAutomatico.setEnabled(true);
+        cmdLlenarManual.setEnabled(true);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        cmdSalir.setEnabled(true);
+        txtLongitud.setEditable(false);
+        
+        
+        }
+
+    }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtLongitud.setText("");
+        txtResultado.setText("");
+        v =null;
+        txtLongitud.requestFocusInWindow();
+        cmdCrear.setEnabled(true);
+        cmdLLenarAutomatico.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        cmdSalir.setEnabled(true);
+        txtLongitud.setEditable(true);
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+
+        for (int i = 0; i < v.length; i++) {
+            txtResultado.append(v[i]+"\n");
+
+        }
+        cmdCrear.setEnabled(false);
+        cmdLLenarAutomatico.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        cmdSalir.setEnabled(true);
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdLLenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLLenarAutomaticoActionPerformed
+        double n;
+        for (int i = 0; i < v.length; i++) {
+            n= (int)(Math.random()*50 + 1);
+            v[i]=n;
+
+        }
+        JOptionPane.showMessageDialog(this, "vector llenado correctamente");
+        cmdCrear.setEnabled(false);
+        cmdLLenarAutomatico.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdMostrar.setEnabled(true);
+        cmdBorrar.setEnabled(true);
+        cmdSalir.setEnabled(true);
+    }//GEN-LAST:event_cmdLLenarAutomaticoActionPerformed
+
+    private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
+        double n;
+        for (int i = 0; i < v.length; i++) {
+            n=Double.parseDouble(JOptionPane.showInputDialog(this,"digite el elemento")+i);
+            v[i]=n;
+            
+        }
+        cmdCrear.setEnabled(false);
+        cmdLLenarAutomatico.setEnabled(false);
+        cmdLlenarManual.setEnabled(false);
+        cmdMostrar.setEnabled(true);
+        cmdBorrar.setEnabled(true);
+        cmdSalir.setEnabled(true);
+    }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     /**
      * @param args the command line arguments
